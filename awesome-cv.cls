@@ -74,6 +74,7 @@
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
+\RequirePackage{times}
 \RequirePackage{fontawesome}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
@@ -222,6 +223,10 @@
 % For elements of skill
 \newcommand*{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text} #1}}
+
+% For elements of pub
+\newcommand*{\pubtypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\color{darktext} #1}}
+\newcommand*{\pubnamestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{text} #1}}
 
 % For elements of the cover letter
 \newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
@@ -636,6 +641,28 @@
 \newcommand*{\cvskill}[2]{%
 	\skilltypestyle{#1} & \skillsetstyle{#2} \\
 }
+
+% Define an environment for cvpubs
+\newenvironment{cvpubs}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2.0mm}
+  \begin{center}
+    \setlength\tabcolsep{1ex}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9}}}
+}{%
+    \end{tabular*}
+  \end{center}
+}
+% Define a line of cv information(skill)
+% Usage: \cvpub{<type>}{<skillset>}
+\newcommand*{\cvpub}[2]{%
+	\pubtypestyle{[#1]} & \pubnamestyle{#2} \\
+}
+
+\newcommand{\boldauthor}[1]{\color{darktext}{\textbf{#1}}}
+\newcommand{\conference}[1]{\textit{#1}}
+
 
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
