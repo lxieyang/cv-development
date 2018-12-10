@@ -183,6 +183,8 @@
 \newcommand*{\footerfont}{\sourcesanspro}
 \newcommand*{\bodyfont}{\sourcesanspro}
 \newcommand*{\bodyfontlight}{\sourcesansprolight}
+\newcommand*{\bodyfontverylight}{\sourcesansproextreme}
+% https://github.com/silkeh/latex-sourcesanspro/blob/master/doc/latex/sourcesanspro/sourcesanspro.pdf
 
 %-------------------------------------------------------------------------------
 %                Configuration for styles
@@ -582,6 +584,8 @@
   \end{tabular*}%
 }
 
+\newcommand{\advisedby}[1]{\bodyfontlight\mdseries{#1}}
+
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
   \begin{center}
@@ -613,16 +617,19 @@
   \begin{center}
     \setlength\tabcolsep{0pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 6.0cm} R{6.0cm}}
 }{%
     \end{tabular*}
   \end{center}
 }
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
-\newcommand*{\cvhonor}[4]{%
-  \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3} \\
+\newcommand*{\cvhonor}[2]{%
+  \honortitlestyle{#1} & \honorlocationstyle{#2} \\
 }
+
+\newcommand{\awardtitle}[1]{\color{darktext}{\textbf{#1}}}
+\newcommand{\awardamount}[1]{\textit{#1}}
 
 % Define an environment for cvskill
 \newenvironment{cvskills}{%
