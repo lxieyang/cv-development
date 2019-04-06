@@ -191,15 +191,15 @@
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\color{text} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\color{text} #1}}
-\newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{28pt}{1em}\headerfont\color{text} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{28pt}{1em}\headerfont\color{text} #1}}
+\newcommand*{\headerpositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{8pt}{1em}\headerfont\itshape\color{graytext} #1}}
-\newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
+\newcommand*{\headersocialstyle}[1]{{\fontsize{7pt}{1em}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{graytext} #1}}
-\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
-\newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
+\newcommand*{\sectionstyle}[1]{{\fontsize{18pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\subsectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
 % For elements of entry
@@ -209,7 +209,7 @@
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
 
-% For elements of subentry
+% For elements of subentry\include{cv}
 \newcommand*{\subentrytitlestyle}[1]{{\fontsize{8pt}{1em}\bodyfont\mdseries\color{text} #1}}
 \newcommand*{\subentrypositionstyle}[1]{{\fontsize{7pt}{1em}\bodyfont\scshape\color{text} #1}}
 \newcommand*{\subentrydatestyle}[1]{{\fontsize{7pt}{1em}\bodyfontlight\slshape\color{text} #1}}
@@ -291,6 +291,10 @@
 % Defines writer's homepage (optional)
 % Usage: \homepage{<url>}
 \newcommand*{\homepage}[1]{\def\@homepage{#1}}
+
+% Defines writer's google scholar (optional)
+% Usage: \scholar{<url>}
+\newcommand*{\scholar}[1]{\def\@scholar{#1}}
 
 % Defines writer's github (optional)
 % Usage: \github{<github-nick>}
@@ -461,6 +465,12 @@
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{https://\@homepage}{\faHome\acvHeaderIconSep\@homepage}%
         }%
+      \ifthenelse{\isundefined{\@scholar}}%
+        {}%
+        {%
+          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+          \href{https://\@scholar}{\faGraduationCap\acvHeaderIconSep Google Scholar Profile}%
+        }%
       \ifthenelse{\isundefined{\@github}}%
         {}%
         {%
@@ -562,6 +572,28 @@
   \vspace{2mm}
 }
 
+% Define an environment for cvteachingexps
+\newenvironment{cvteachingexps}{%
+  \vspace{\acvSectionContentTopSkip}
+  \begin{center}
+}{%
+  \end{center}
+}
+% Define an entry of cv teaching exp
+% Usage: \cvteachingexp{<position>}{<title>}{<location>}{<date>}
+\newcommand*{\cvteachingexp}[4]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+  \end{tabular*}%
+}
+
+
 % Define an environment for cventry
 \newenvironment{cventries}{%
   \vspace{\acvSectionContentTopSkip}
@@ -656,7 +688,7 @@
   \begin{center}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.9}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{\textwidth * \real{0.9}}}
 }{%
     \end{tabular*}
   \end{center}
