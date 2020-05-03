@@ -227,9 +227,11 @@
 \newcommand*{\skillsetstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\color{text} #1}}
 
 % For elements of pub
-\newcommand*{\pubtypestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\color{darktext} #1}}
-\newcommand*{\pubawardstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\color{darktext} #1}}
-\newcommand*{\pubnamestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\color{text} #1}}
+\newcommand*{\pubtypestyle}[1]{
+  {\fontsize{11pt}{1em}\bodyfont\color{darktext} #1}
+}
+\newcommand*{\pubawardstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\color{darktext} #1}}
+\newcommand*{\pubnamestyle}[1]{{\setstretch{1.3}\fontsize{10pt}{1em}\bodyfont\color{text} #1}}
 
 % For elements of the cover letter
 \newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
@@ -671,7 +673,7 @@
   \begin{center}
     \setlength\tabcolsep{1ex}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} r L{\textwidth * \real{0.79}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{\textwidth * \real{0.79}}}
 }{%
     \end{tabular*}
   \end{center}
@@ -689,7 +691,7 @@
   \begin{center}
     \setlength\tabcolsep{1.1ex}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{\textwidth * \real{0.86}}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{\textwidth - 2cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -698,9 +700,12 @@
 % Usage: \cvpub{<type>}{<skillset>}
 \newcommand*{\cvpub}[3]{%
 \vspace{2.0mm}
-	\pubtypestyle{[#1]} ~~\pubawardstyle{#2} & \pubnamestyle{#3} \\
+	\pubtypestyle{[#1]}\pubawardstyle{#2}&\pubnamestyle{#3} \\
 }
 
+\newcommand{\boldPublicationTitle}[1]{\textbf{#1}}
+\newcommand{\awardDescription}[1]{\textbf{\color{awesome}#1}}
+\newcommand{\authors}[1]{#1}
 \newcommand{\boldauthor}[1]{\color{darktext}{\textbf{#1}}}
 \newcommand{\conference}[1]{\textit{#1}}
 
