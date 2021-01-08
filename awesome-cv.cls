@@ -687,7 +687,7 @@
 % Define an environment for cvpubs
 \newenvironment{cvpubs}{%
   \vspace{\acvSectionContentTopSkip}
-  \vspace{-2.0mm}
+  \vspace{-2.5mm}
   \begin{center}
     \setlength\tabcolsep{1.1ex}
     \setlength{\extrarowheight}{0pt}
@@ -699,7 +699,7 @@
 % Define a line of cv information(skill)
 % Usage: \cvpub{<type>}{<skillset>}
 \newcommand*{\cvpub}[3]{%
-\vspace{2.0mm}
+\vspace{-0.5mm}
 	\pubtypestyle{[#1]}\pubawardstyle{#2}&\pubnamestyle{#3} \\
 }
 
